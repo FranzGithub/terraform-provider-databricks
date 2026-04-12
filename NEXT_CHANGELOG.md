@@ -11,6 +11,8 @@
 
 ### Bug Fixes
 
+* Fixed handling of the case when library is removed outside of Terraform ([#5678](https://github.com/databricks/terraform-provider-databricks/pull/5678)).
+
 ### Documentation
 
 ### Exporter
