@@ -11,6 +11,8 @@
 
 ### Bug Fixes
 
+* Fixed child groups collection in `databricks_group` data source ([#5679](https://github.com/databricks/terraform-provider-databricks/pull/5679)).
+
 ### Documentation
 
 ### Exporter
