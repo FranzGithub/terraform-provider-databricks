@@ -17,6 +17,7 @@
 ### Bug Fixes
 
 * Fixed import inconsistency for `force_destroy` and other schema-only fields causing "Provider produced inconsistent final plan" errors ([#5487](https://github.com/databricks/terraform-provider-databricks/pull/5487)).
+* Fixed destroying of UC objects when workspace binding removed before actual destroy ([#5581](https://github.com/databricks/terraform-provider-databricks/pull/5581)).
 
 ### Documentation
 
