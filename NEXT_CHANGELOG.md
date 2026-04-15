@@ -9,7 +9,7 @@
 * Add resource and data sources for `databricks_supervisor_agent`.
 * Add resource and data sources for `databricks_supervisor_agent_tool`.
 * Add resource and data sources for `databricks_secret_uc`.
-* Added support for scoped personal and ObO access tokens ([#5576](https://github.com/databricks/terraform-provider-databricks/pull/5576)).
+* Added support for scoped personal  access and ObO tokens ([#5576](https://github.com/databricks/terraform-provider-databricks/pull/5576)).
 
 ### Bug Fixes
 
