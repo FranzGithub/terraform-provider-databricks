@@ -297,6 +297,45 @@ func TestWorkspaceBindingsReadImport(t *testing.T) {
 	})
 }
 
+func TestWorkspaceBindings_ReadOnlyNotSupportedForStorageCredential(t *testing.T) {
+	qa.ResourceFixture{
+		Resource: ResourceWorkspaceBinding(),
+		Create:   true,
+		HCL: `
+		securable_name = "my_credential"
+		securable_type = "storage_credential"
+		workspace_id   = "1234567890101112"
+		binding_type   = "BINDING_TYPE_READ_ONLY"
+		`,
+	}.ExpectError(t, "binding_type BINDING_TYPE_READ_ONLY is only supported for catalogs, storage_credential only supports BINDING_TYPE_READ_WRITE")
+}
+
+func TestWorkspaceBindings_ReadOnlyNotSupportedForExternalLocation(t *testing.T) {
+	qa.ResourceFixture{
+		Resource: ResourceWorkspaceBinding(),
+		Create:   true,
+		HCL: `
+		securable_name = "my_location"
+		securable_type = "external_location"
+		workspace_id   = "1234567890101112"
+		binding_type   = "BINDING_TYPE_READ_ONLY"
+		`,
+	}.ExpectError(t, "binding_type BINDING_TYPE_READ_ONLY is only supported for catalogs, external_location only supports BINDING_TYPE_READ_WRITE")
+}
+
+func TestWorkspaceBindings_ReadOnlyNotSupportedForCredential(t *testing.T) {
+	qa.ResourceFixture{
+		Resource: ResourceWorkspaceBinding(),
+		Create:   true,
+		HCL: `
+		securable_name = "my_credential"
+		securable_type = "credential"
+		workspace_id   = "1234567890101112"
+		binding_type   = "BINDING_TYPE_READ_ONLY"
+		`,
+	}.ExpectError(t, "binding_type BINDING_TYPE_READ_ONLY is only supported for catalogs, credential only supports BINDING_TYPE_READ_WRITE")
+}
+
 func TestWorkspaceBindingsReadErrors(t *testing.T) {
 	qa.ResourceFixture{
 		Resource: ResourceWorkspaceBinding(),

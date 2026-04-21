@@ -92,6 +92,14 @@ func ResourceWorkspaceBinding() common.Resource {
 	return common.Resource{
 		Schema:        workspaceBindingSchema,
 		SchemaVersion: 1,
+		CustomizeDiff: func(ctx context.Context, d *schema.ResourceDiff, c *common.DatabricksClient) error {
+			securableType := d.Get("securable_type").(string)
+			bindingType := d.Get("binding_type").(string)
+			if securableType != "catalog" && bindingType == string(catalog.WorkspaceBindingBindingTypeBindingTypeReadOnly) {
+				return fmt.Errorf("binding_type BINDING_TYPE_READ_ONLY is only supported for catalogs, %s only supports BINDING_TYPE_READ_WRITE", securableType)
+			}
+			return nil
+		},
 		StateUpgraders: []schema.StateUpgrader{
 			{
 				Version: 0,

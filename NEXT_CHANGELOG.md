@@ -11,6 +11,9 @@
 
 ### Bug Fixes
 
+* Mark `effective_file_event_queue` as read-only in `databricks_external_location` to prevent Terraform drift.
+* Fix issue with read-only workspace bindings for non-catalog objects ([#5611](https://github.com/databricks/terraform-provider-databricks/pull/5611))
+
 ### Documentation
 
 ### Exporter
